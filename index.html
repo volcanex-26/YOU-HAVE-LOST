@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Access Denied</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #000;
+    color: #00ff41;
+    font-family: "Courier New", Courier, monospace;
+  }
+  #terminal {
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  #end {
+    display: none;
+    padding: 20px;
+    margin-top: 30px;
+  }
+  #end h1 {
+    font-size: 28px;
+    color: #ff3b3b;
+    margin: 0 0 10px 0;
+  }
+  button {
+    margin-top: 20px;
+    background: transparent;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #00ff41;
+    color: #000;
+  }
+</style>
+</head>
+<body>
+<div id="terminal"></div>
+<div id="end">
+  <h1>YOU HAVE LOST!</h1>
+  <p>Your computer has been "hacked" by Atalante.<br>
+  EXERCISE EXERCISE EXERCISE</p>
+  <button onclick="location.reload()">Restart</button>
+</div>
+
+<script>
+  const lines = [
+    "> Initializing intrusion module...",
+    "> Scanning the network for weaknesses...",
+    "> Weakness found: password = \"1234\"",
+    "> Downloading vacation photos... 100%",
+    "> Analyzing search history... ",
+    "> Opening webcam... [ACCESS GRANTED]",
+    "> Sending data to Atalante...",
+    "> Final check...",
+    "> TOTAL ACCESS OBTAINED."
+  ];
+
+  const terminal = document.getElementById("terminal");
+  const end = document.getElementById("end");
+  let lineIndex = 0;
+  let charIndex = 0;
+
+  function typeNext() {
+    if (lineIndex < lines.length) {
+      const line = lines[lineIndex];
+      if (charIndex < line.length) {
+        terminal.textContent += line.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeNext, 35);
+      } else {
+        terminal.textContent += "\n";
+        lineIndex++;
+        charIndex = 0;
+        setTimeout(typeNext, 400);
+      }
+    } else {
+      setTimeout(() => {
+        terminal.style.display = "none";
+        end.style.display = "block";
+      }, 800);
+    }
+  }
+
+  setTimeout(typeNext, 500);
+</script>
+</body>
+</html>
